@@ -1,0 +1,8 @@
+## Interface: 70000
+## Title: EasyRack2 1.33
+## Author: Upne
+## Notes: Equipment Switcher using EquipmentManager
+## Notes-koKR: 장비관리자를 이용한 장비 교체 애드온
+## SavedVariablesPerCharacter: ER2_Sets
+
+EasyRack2.xml

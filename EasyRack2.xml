@@ -1,0 +1,135 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+	<Script file="EasyRack2_Localization.lua"/>
+	<Script file="EasyRack2.lua"/>
+
+	<Button name="EasyRack2Frame" parent="UIParent" hidden="false" movable="true">
+		<Size>
+			<AbsDimension x="10" y="16" />
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" relativeTo="PlayerFrame" >
+				<Offset><AbsDimension x="0" y="-20" /></Offset>
+			</Anchor>
+		</Anchors>
+
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentLeft" file="Interface\CharacterFrame\UI-CharacterFrame-GroupIndicator">
+					<Size>
+						<AbsDimension x="24" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.1875" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentRight" file="Interface\CharacterFrame\UI-CharacterFrame-GroupIndicator">
+					<Size>
+						<AbsDimension x="24" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.53125" right="0.71875" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentMiddle" file="Interface\CharacterFrame\UI-CharacterFrame-GroupIndicator">
+					<Size>
+						<AbsDimension x="0" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						<Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT"/>
+					</Anchors>
+					<TexCoords left="0.1875" right="0.53125" top="0" bottom="1"/>
+				</Texture>
+				<FontString name="$parentText" inherits="GameFontHighlightSmall">
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="20" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+
+		<Frames>
+			<Frame name="$parentDropDownSet" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="-10" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						EasyRackDropDownSet_OnLoad(self);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+
+			<Frame name="$parentDropDownEquip" inherits="UIDropDownMenuTemplate" id="2" hidden="true">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="-10" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						EasyRackDropDownEquip_OnLoad(self);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+
+		<Scripts>
+			<OnLoad>
+				EasyRack2FrameLeft:SetAlpha(0.3);
+				EasyRack2FrameRight:SetAlpha(0.3);
+				EasyRack2FrameMiddle:SetAlpha(0.3);
+				EasyRack2FrameText:SetAlpha(0.7);
+				EasyRack2Frame:SetClampedToScreen()
+				EasyRack_OnLoad(self);
+			</OnLoad>
+			<OnEvent function="EasyRack_OnEvent" />
+			<OnClick>
+				EasyRack_OnClick(self, button, down);
+			</OnClick>
+			<OnDragStart>
+				if IsAltKeyDown() then
+					self.IconMovable = true;
+					self:StartMoving();
+				end
+				if IsControlKeyDown() then
+					self:StartMoving();
+				end
+			</OnDragStart>
+			<OnDragStop>
+				self.IconMovable = false;
+				self:StopMovingOrSizing();
+				self:SetUserPlaced(true);
+			</OnDragStop>
+			<OnUpdate>
+				if IsAltKeyDown() and self.IconMovable then
+					EasyRack_AnchorPlayerFrame();
+				end
+			</OnUpdate>
+			<OnEnter>
+				GameTooltip_SetDefaultAnchor(GameTooltip, self);
+				GameTooltip:AddLine("EasyRack2", 1, 1, 0);
+				GameTooltip:AddLine("좌클릭 : 착용", 1, 1, 1);
+				GameTooltip:AddLine("우클릭 : 관리", 1, 1, 1);
+				GameTooltip:AddLine("Alt + 드래그: 플레이어 프레임에 맞춰 이동", 1, 1, 1);
+				GameTooltip:AddLine("Ctrl + 드래그: 자유롭게 이동", 1, 1, 1);
+				GameTooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+</Ui>

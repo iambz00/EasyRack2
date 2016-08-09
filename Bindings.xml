@@ -1,0 +1,32 @@
+<Bindings>
+	<Binding name="EASYRACKUNEQUIP" header="EASYRACK">
+		EasyRack_UnEquip()
+	</Binding>
+	<Binding name="EASYRACKMODE1" header="EASYRACK">
+		EasyRack_Equip(1)
+	</Binding>
+	<Binding name="EASYRACKMODE2" header="EASYRACK">
+		EasyRack_Equip(2)
+	</Binding>
+	<Binding name="EASYRACKMODE3" header="EASYRACK">
+		EasyRack_Equip(3)
+	</Binding>
+	<Binding name="EASYRACKMODE4" header="EASYRACK">
+		EasyRack_Equip(4)
+	</Binding>
+	<Binding name="EASYRACKMODE5" header="EASYRACK">
+		EasyRack_Equip(5)
+	</Binding>
+	<Binding name="EASYRACKMODE6" header="EASYRACK">
+		EasyRack_Equip(6)
+	</Binding>
+	<Binding name="EASYRACKMODE7" header="EASYRACK">
+		EasyRack_Equip(7)
+	</Binding>
+	<Binding name="EASYRACKMODE8" header="EASYRACK">
+		EasyRack_Equip(8)
+	</Binding>
+	<Binding name="EASYRACKMODE9" header="EASYRACK">
+		EasyRack_Equip(9)
+	</Binding>
+</Bindings>
